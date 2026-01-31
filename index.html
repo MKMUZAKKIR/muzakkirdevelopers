@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Muzakkir - Web Designer & Logo Creator Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+            color: #e5e7eb;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00d4ff 0%, #ff006e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-text-cyan {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(15, 20, 25, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .float { animation: float 3s ease-in-out infinite; }
+        .slide-in { animation: slideInUp 0.6s ease-out forwards; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-out;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            width: 100%;
+            height: calc(100vh - 64px);
+            background: rgba(15, 20, 25, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 40;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .progress-bar {
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(90deg, #00d4ff, #ff006e);
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover:active {
+            transform: scale(0.95);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1f2e;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00d4ff;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff006e;
+        }
+
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-glow:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .badge-pulse {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @supports (padding: max(0px)) {
+            body {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: rgba(0, 212, 255, 0.8);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem !important; }
+            h2 { font-size: 2rem !important; }
+            h3 { font-size: 1.5rem !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full glass z-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center h-16">
+            <div class="text-2xl sm:text-3xl font-bold gradient-text flex items-center gap-2">
+                <i class="fas fa-code"></i> Muzakkir
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8">
+                <a href="#home" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">About</a>
+                <a href="#services" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">Services</a>
+                <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">Portfolio</a>
+                <a href="#skills" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">Skills</a>
+                <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition font-medium text-sm">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menuBtn" class="md:hidden text-2xl text-cyan-400 transition">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <button class="hidden md:block bg-gradient-to-r from-cyan-500 to-pink-500 px-6 py-2 rounded-lg text-sm font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all btn-glow">
+                Hire Me
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <div class="flex flex-col gap-2 p-4">
+                <a href="#home" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#about" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-user"></i> About
+                </a>
+                <a href="#services" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-briefcase"></i> Services
+                </a>
+                <a href="#portfolio" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-images"></i> Portfolio
+                </a>
+                <a href="#skills" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-star"></i> Skills
+                </a>
+                <a href="#contact" class="text-gray-300 hover:text-cyan-400 transition font-medium py-3 px-4 border-b border-cyan-500/20">
+                    <i class="fas fa-envelope"></i> Contact
+                </a>
+                <button class="bg-gradient-to-r from-cyan-500 to-pink-500 w-full py-3 rounded-lg font-semibold mt-4 btn-glow">
+                    Hire Me
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30 pointer-events-none">
+            <div class="absolute top-20 left-10 w-64 h-64 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
+            <div class="absolute top-40 right-10 w-64 h-64 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <div class="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/30 rounded-full text-cyan-400 text-sm font-medium mb-8 slide-in badge-pulse">
+                <i class="fas fa-rocket"></i> Welcome to my digital space
+            </div>
+
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight slide-in" style="animation-delay: 0.1s">
+                <span class="gradient-text">Creative Web Designer</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-gray-400 mb-8 max-w-2xl mx-auto slide-in leading-relaxed" style="animation-delay: 0.2s">
+                I craft stunning digital experiences with modern web design, engaging content, and unique logos that help businesses stand out and succeed.
+            </p>
+
+            <div class="flex gap-4 justify-center flex-wrap mb-12 slide-in" style="animation-delay: 0.3s">
+                <button onclick="scrollToSection('portfolio')" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all transform hover:scale-105 btn-glow">
+                    <i class="fas fa-briefcase"></i> View My Work
+                </button>
+                <button onclick="scrollToSection('contact')" class="px-8 py-3 border border-cyan-500/50 rounded-lg font-semibold hover:bg-cyan-500/10 transition-all transform hover:scale-105">
+                    <i class="fas fa-envelope"></i> Get In Touch
+                </button>
+            </div>
+
+            <div class="mt-16 grid grid-cols-3 gap-4 sm:gap-8 slide-in" style="animation-delay: 0.4s">
+                <div class="text-center">
+                            <div class="text-4xl sm:text-5xl font-bold gradient-text">50+</div>
+                            <div class="text-gray-400 text-xs sm:text-sm mt-2">Projects Done</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl sm:text-5xl font-bold gradient-text">30+</div>
+                            <div class="text-gray-400 text-xs sm:text-sm mt-2">Happy Clients</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl sm:text-5xl font-bold gradient-text">5★</div>
+                            <div class="text-gray-400 text-xs sm:text-sm mt-2">Avg Rating</div>
+                        </div>
+            </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-cyan-400 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center gradient-text-cyan animate-on-scroll">
+                About Me
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+                <div class="relative group animate-on-scroll">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-pink-600 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+                    <div class="relative bg-gradient-to-br from-cyan-600/20 to-pink-600/20 rounded-2xl overflow-hidden h-80 sm:h-96 flex items-center justify-center border border-cyan-500/30">
+                        <div class="text-center p-4">
+                            <div class="text-6xl sm:text-8xl mb-4 float">📸</div>
+                            <p class="text-gray-400 font-semibold">Your Professional Photo</p>
+                            <p class="text-xs sm:text-sm text-gray-500 mt-2">Add image: &lt;img src="photo.jpg"&gt;</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="mb-6 inline-block px-4 py-2 bg-cyan-500/20 border border-cyan-500/50 rounded-full text-cyan-300 text-sm font-medium">
+                        <i class="fas fa-star"></i> Young & Ambitious
+                    </div>
+
+                    <p class="text-lg sm:text-xl text-gray-300 mb-6 leading-relaxed">
+                        I'm <span class="text-cyan-400 font-semibold">Muzakkir</span>, a talented 16-year-old web designer and creative enthusiast. Recently completed my SSC, I've dedicated myself to mastering modern web design, content creation, and unique logo design.
+                    </p>
+
+                    <p class="text-lg sm:text-xl text-gray-300 mb-6 leading-relaxed">
+                        My passion drives me to create visually stunning and functionally perfect digital experiences. Every project is an opportunity to push boundaries and deliver exceptional value to my clients.
+                    </p>
+
+                    <div class="flex gap-3 flex-wrap">
+                        <span class="px-4 py-2 bg-cyan-500/20 border border-cyan-500/50 rounded-lg text-cyan-300 text-sm font-medium">
+                            <i class="fas fa-paint-brush"></i> Web Designer
+                        </span>
+                        <span class="px-4 py-2 bg-pink-500/20 border border-pink-500/50 rounded-lg text-pink-300 text-sm font-medium">
+                            <i class="fas fa-pen-fancy"></i> Logo Creator
+                        </span>
+                        <span class="px-4 py-2 bg-cyan-500/20 border border-cyan-500/50 rounded-lg text-cyan-300 text-sm font-medium">
+                            <i class="fas fa-feather"></i> Content Creator
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center gradient-text-cyan animate-on-scroll">
+                Services & Pricing
+            </h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="glass rounded-xl p-6 sm:p-8 card-hover animate-on-scroll border border-cyan-500/20 hover:border-cyan-500/50">
+                    <div class="text-5xl mb-4"><i class="fas fa-globe text-cyan-400"></i></div>
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4">Web Design</h3>
+                    <p class="text-gray-400 mb-6">Modern, responsive websites that attract and convert clients.</p>
+                    <div class="text-3xl font-bold gradient-text mb-4">$500+</div>
+                    <ul class="text-gray-300 space-y-2 text-sm mb-6">
+                        <li><i class="fas fa-check text-cyan-400"></i> Responsive Design</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Modern UI/UX</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> SEO Optimized</li>
+                    </ul>
+                    <button class="w-full py-2 border border-cyan-500/50 rounded-lg hover:bg-cyan-500/10 transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="glass rounded-xl p-6 sm:p-8 card-hover animate-on-scroll border border-pink-500/20 hover:border-pink-500/50" style="animation-delay: 0.1s">
+                    <div class="text-5xl mb-4"><i class="fas fa-palette text-pink-400"></i></div>
+                    <h3 class="text-2xl font-bold text-pink-400 mb-4">Logo Design</h3>
+                    <p class="text-gray-400 mb-6">Unique and memorable logos that define your brand identity.</p>
+                    <div class="text-3xl font-bold gradient-text mb-4">$300+</div>
+                    <ul class="text-gray-300 space-y-2 text-sm mb-6">
+                        <li><i class="fas fa-check text-pink-400"></i> Custom Design</li>
+                        <li><i class="fas fa-check text-pink-400"></i> Multiple Concepts</li>
+                        <li><i class="fas fa-check text-pink-400"></i> Unlimited Revisions</li>
+                    </ul>
+                    <button class="w-full py-2 border border-pink-500/50 rounded-lg hover:bg-pink-500/10 transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="glass rounded-xl p-6 sm:p-8 card-hover animate-on-scroll border border-cyan-500/20 hover:border-cyan-500/50" style="animation-delay: 0.2s">
+                    <div class="text-5xl mb-4"><i class="fas fa-pen-fancy text-cyan-400"></i></div>
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4">Content Creation</h3>
+                    <p class="text-gray-400 mb-6">Engaging content that tells your brand story effectively.</p>
+                    <div class="text-3xl font-bold gradient-text mb-4">$200+</div>
+                    <ul class="text-gray-300 space-y-2 text-sm mb-6">
+                        <li><i class="fas fa-check text-cyan-400"></i> Graphics Design</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Content Strategy</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Fast Delivery</li>
+                    </ul>
+                    <button class="w-full py-2 border border-cyan-500/50 rounded-lg hover:bg-cyan-500/10 transition">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-transparent via-pink-500/5 to-transparent">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center gradient-text-cyan animate-on-scroll">
+                Skills & Expertise
+            </h2>
+
+            <div class="space-y-8">
+                <div class="animate-on-scroll">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="text-lg font-semibold text-cyan-400">
+                            <i class="fas fa-code"></i> Web Design & Development
+                        </label>
+                        <span class="text-sm text-gray-400">85%</span>
+                    </div>
+                    <div class="w-full bg-gray-700/30 rounded-full h-3 overflow-hidden">
+                        <div class="progress-bar h-full rounded-full" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll" style="animation-delay: 0.1s">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="text-lg font-semibold text-pink-400">
+                            <i class="fas fa-palette"></i> UI/UX Design
+                        </label>
+                        <span class="text-sm text-gray-400">90%</span>
+                    </div>
+                    <div class="w-full bg-gray-700/30 rounded-full h-3 overflow-hidden">
+                        <div class="progress-bar h-full rounded-full" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="text-lg font-semibold text-cyan-400">
+                            <i class="fas fa-image"></i> Logo Design
+                        </label>
+                        <span class="text-sm text-gray-400">95%</span>
+                    </div>
+                    <div class="w-full bg-gray-700/30 rounded-full h-3 overflow-hidden">
+                        <div class="progress-bar h-full rounded-full" style="width: 95%"></div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll" style="animation-delay: 0.3s">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="text-lg font-semibold text-pink-400">
+                            <i class="fas fa-pen"></i> Content Creation
+                        </label>
+                        <span class="text-sm text-gray-400">88%</span>
+                    </div>
+                    <div class="w-full bg-gray-700/30 rounded-full h-3 overflow-hidden">
+                        <div class="progress-bar h-full rounded-full" style="width: 88%"></div>
+                    </div>
+                </div>
+
+                <div class="animate-on-scroll" style="animation-delay: 0.4s">
+                    <div class="flex justify-between items-center mb-3">
+                        <label class="text-lg font-semibold text-cyan-400">
+                            <i class="fas fa-tools"></i> Front-end Technologies
+                        </label>
+                        <span class="text-sm text-gray-400">80%</span>
+                    </div>
+                    <div class="w-full bg-gray-700/30 rounded-full h-3 overflow-hidden">
+                        <div class="progress-bar h-full rounded-full" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 animate-on-scroll">
+                <h3 class="text-2xl font-bold text-center mb-8 text-white">Technologies I Use</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fas fa-code text-cyan-400 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">HTML/CSS</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fab fa-js text-yellow-400 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">JavaScript</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fab fa-react text-blue-400 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">React</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fas fa-wind text-cyan-300 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">Tailwind CSS</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fab fa-figma text-pink-400 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">Figma</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fab fa-adobe text-red-500 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">Adobe Suite</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fab fa-wordpress text-blue-600 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">WordPress</p>
+                    </div>
+                    <div class="glass rounded-lg p-4 text-center border border-cyan-500/20 hover:border-cyan-500/50 transition card-hover">
+                        <i class="fas fa-mobile-alt text-green-400 text-2xl mb-2"></i>
+                        <p class="text-sm font-semibold">Mobile Design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 sm:py-20 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center gradient-text-cyan animate-on-scroll">
+                My Live Projects
+            </h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Project 1 -->
+                <a href="https://mkalex.netlify.app/" target="_blank" rel="noopener noreferrer" class="glass rounded-xl overflow-hidden card-hover animate-on-scroll border border-cyan-500/20 hover:border-cyan-500/50 group cursor-pointer">
+                    <div class="h-48 bg-gradient-to-br from-cyan-600/30 to-blue-600/30 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-globe text-6xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-cyan-500/20 border border-cyan-500/50 rounded-full text-cyan-300 text-xs font-semibold">
+                            Web Design
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-semibold">Visit Site</span>
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">MK Alex Portfolio</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Modern professional portfolio with interactive design</p>
+                        <div class="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
+                            <i class="fas fa-arrow-right text-xs"></i> View Live
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://mkhelix.netlify.app/" target="_blank" rel="noopener noreferrer" class="glass rounded-xl overflow-hidden card-hover animate-on-scroll border border-pink-500/20 hover:border-pink-500/50 group cursor-pointer" style="animation-delay: 0.1s">
+                    <div class="h-48 bg-gradient-to-br from-pink-600/30 to-red-600/30 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-rocket text-6xl text-pink-400 group-hover:scale-110 transition-transform"></i>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-pink-500/20 border border-pink-500/50 rounded-full text-pink-300 text-xs font-semibold">
+                            Creative
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-semibold">Visit Site</span>
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">MK Helix Creative</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Bold and vibrant creative studio showcase</p>
+                        <div class="flex items-center gap-2 text-pink-400 font-semibold text-sm">
+                            <i class="fas fa-arrow-right text-xs"></i> View Live
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 3 -->
+                <a href="https://muzakkirs.netlify.app/" target="_blank" rel="noopener noreferrer" class="glass rounded-xl overflow-hidden card-hover animate-on-scroll border border-cyan-500/20 hover:border-cyan-500/50 group cursor-pointer" style="animation-delay: 0.2s">
+                    <div class="h-48 bg-gradient-to-br from-cyan-600/30 to-purple-600/30 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-star text-6xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-cyan-500/20 border border-cyan-500/50 rounded-full text-cyan-300 text-xs font-semibold">
+                            Premium
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                            <span class="text-white font-semibold">Visit Site</span>
+                        </div>
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl font-bold text-white mb-2">Muzakkir's Hub</h3>
+                        <p class="text-gray-400 mb-4 text-sm">Complete digital presence with all services</p>
+                        <div class="flex items-center gap-2 text-cyan-400 font-semibold text-sm">
+                            <i class="fas fa-arrow-right text-xs"></i> View Live
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Additional Featured Works -->
+            <div class="mt-16 pt-16 border-t border-cyan-500/20">
+                <h3 class="text-2xl sm:text-3xl font-bold text-center gradient-text mb-8 animate-on-scroll">Client Success Stories</h3>
+                <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
+                    <div class="glass rounded-xl p-6 sm:p-8 card-hover animate-on-scroll border border-cyan-500/20 hover:border-cyan-500/50">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white font-bold">
+                                E1
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">E-Commerce Success</p>
+                                <p class="text-xs text-gray-400">Business Growth</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm">Built a complete e-commerce platform that increased client sales by 300%</p>
+                        <div class="mt-4 flex gap-1">
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-6 sm:p-8 card-hover animate-on-scroll border border-pink-500/20 hover:border-pink-500/50">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white font-bold">
+                                BR
+                            </div>
+                            <div>
+                                <p class="font-bold text-white">Brand Redesign</p>
+                                <p class="text-xs text-gray-400">Identity Refresh</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm">Created modern brand identity that enhanced client recognition by 250%</p>
+                        <div class="mt-4 flex gap-1">
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-transparent via-pink-500/5 to-transparent">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-12 sm:mb-16 text-center gradient-text-cyan animate-on-scroll">
+                Client Testimonials
+            </h2>
+
+            <div class="grid sm:grid-cols-2 gap-6 sm:gap-8">
+                <div class="glass rounded-xl p-6 sm:p-8 border border-cyan-500/20 hover:border-cyan-500/50 transition animate-on-scroll card-hover">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        "Muzakkir transformed my vision into a stunning website. His attention to detail and modern design approach exceeded my expectations. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold">
+                            AS
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white">Ahmed Saeed</p>
+                            <p class="text-sm text-gray-400">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-xl p-6 sm:p-8 border border-pink-500/20 hover:border-pink-500/50 transition animate-on-scroll card-hover" style="animation-delay: 0.1s">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        "Creative, professional, and responsive! Muzakkir's logo design perfectly captures our brand essence. He's truly a talented young designer."
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-cyan-400 rounded-full flex items-center justify-center text-white font-bold">
+                            FK
+                        </div>
+                        <div>
+                            <p class="font-semibold text-white">Fatima Khan</p>
+                            <p class="text-sm text-gray-400">Startup Founder</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-8 text-center gradient-text-cyan animate-on-scroll">
+                Let's Create Something Amazing
+            </h2>
+            <p class="text-center text-gray-400 mb-12 sm:mb-16 text-lg sm:text-xl animate-on-scroll leading-relaxed max-w-2xl mx-auto">
+                Have a project idea or want to collaborate? I'm just a message away. Let's discuss your vision and bring it to life.
+            </p>
+
+            <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 mb-12">
+                <!-- Contact Form -->
+                <form id="contactForm" class="glass rounded-xl p-6 sm:p-8 border border-cyan-500/20 space-y-5 animate-on-scroll">
+                    <div class="space-y-5">
+                        <input type="text" id="name" placeholder="Your Name" required class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-500 transition-all focus:border-cyan-500/50 focus:bg-gray-800/70">
+                        <input type="email" id="email" placeholder="Your Email" required class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-500 transition-all focus:border-cyan-500/50 focus:bg-gray-800/70">
+                        <input type="tel" id="phone" placeholder="Phone Number (Optional)" class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-500 transition-all focus:border-cyan-500/50 focus:bg-gray-800/70">
+                        <input type="text" id="subject" placeholder="Project Subject" required class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-500 transition-all focus:border-cyan-500/50 focus:bg-gray-800/70">
+                        <textarea id="message" placeholder="Tell me about your project..." required rows="5" class="w-full px-4 py-3 bg-gray-800/50 border border-cyan-500/20 rounded-lg text-white placeholder-gray-500 transition-all focus:border-cyan-500/50 focus:bg-gray-800/70 resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-lg font-semibold hover:shadow-lg hover:shadow-cyan-500/50 transition-all transform hover:scale-105 btn-glow">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+
+                <!-- Contact Info -->
+                <div class="space-y-6 animate-on-scroll" style="animation-delay: 0.2s">
+                    <div class="glass rounded-xl p-6 sm:p-8 border border-cyan-500/20 hover:border-cyan-500/50 transition-all card-hover">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-envelope text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Email</p>
+                                <a href="mailto:muzakkir7977@gmail.com" class="text-white font-semibold hover:text-cyan-400 transition">
+                                    muzakkir7977@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-6 sm:p-8 border border-pink-500/20 hover:border-pink-500/50 transition-all card-hover">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center">
+                                <i class="fas fa-phone text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Phone</p>
+                                <a href="tel:+919833724525" class="text-white font-semibold hover:text-pink-400 transition">
+                                    +91 9833724525
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass rounded-xl p-6 sm:p-8 border border-cyan-500/20 hover:border-cyan-500/50 transition-all card-hover">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-2xl text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-400 text-sm">Location</p>
+                                <p class="text-white font-semibold">Mumbai, India</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="pt-4 border-t border-cyan-500/20">
+                        <p class="text-gray-400 text-sm mb-4">Follow Me</p>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500 to-purple-500 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Contact Options -->
+            <div class="grid sm:grid-cols-3 gap-4 mt-12">
+                <a href="https://wa.me/919833724525" target="_blank" rel="noopener noreferrer" class="glass rounded-lg p-4 sm:p-6 border border-green-500/20 hover:border-green-500/50 text-center card-hover transition-all animate-on-scroll">
+                    <i class="fab fa-whatsapp text-4xl text-green-400 mb-3"></i>
+                    <p class="text-white font-semibold text-sm">WhatsApp Me</p>
+                </a>
+                <a href="mailto:muzakkir7977@gmail.com" class="glass rounded-lg p-4 sm:p-6 border border-red-500/20 hover:border-red-500/50 text-center card-hover transition-all animate-on-scroll" style="animation-delay: 0.1s">
+                    <i class="fas fa-envelope text-4xl text-red-400 mb-3"></i>
+                    <p class="text-white font-semibold text-sm">Send Email</p>
+                </a>
+                <a href="tel:+919833724525" class="glass rounded-lg p-4 sm:p-6 border border-blue-500/20 hover:border-blue-500/50 text-center card-hover transition-all animate-on-scroll" style="animation-delay: 0.2s">
+                    <i class="fas fa-phone text-4xl text-blue-400 mb-3"></i>
+                    <p class="text-white font-semibold text-sm">Call Me</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-cyan-500/20 py-8 sm:py-12 px-4 sm:px-6 bg-gradient-to-b from-transparent to-black/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 text-center sm:text-left">
+                <div>
+                    <h4 class="text-lg font-bold gradient-text mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#home" class="hover:text-cyan-400 transition inline-flex items-center gap-2"><i class="fas fa-chevron-right"></i>Home</a></li>
+                        <li><a href="#about" class="hover:text-cyan-400 transition inline-flex items-center gap-2"><i class="fas fa-chevron-right"></i>About</a></li>
+                        <li><a href="#services" class="hover:text-cyan-400 transition inline-flex items-center gap-2"><i class="fas fa-chevron-right"></i>Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-cyan-400 transition inline-flex items-center gap-2"><i class="fas fa-chevron-right"></i>Portfolio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold gradient-text mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><i class="fas fa-check text-cyan-400"></i> Web Design</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Logo Design</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Content Creation</li>
+                        <li><i class="fas fa-check text-cyan-400"></i> Brand Strategy</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold gradient-text mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li class="hover:text-cyan-400 transition"><i class="fas fa-envelope"></i> muzakkir7977@gmail.com</li>
+                        <li class="hover:text-cyan-400 transition"><i class="fas fa-phone"></i> +91 9833724525</li>
+                        <li class="hover:text-cyan-400 transition"><i class="fas fa-map-marker-alt"></i> Mumbai, India</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold gradient-text mb-4">Follow Me</h4>
+                    <div class="flex gap-3 justify-center sm:justify-start flex-wrap">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-600 to-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-600 to-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center text-white hover:scale-110 transition-transform">
+                            <i class="fab fa-github text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-cyan-500/20 pt-6 sm:pt-8">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-gray-400 text-sm">
+                    <div class="text-lg font-bold gradient-text">Muzakkir Design Studio</div>
+                    <p>© 2024 All rights reserved. Designed & Built by Muzakkir</p>
+                    <p>Made with <i class="fas fa-heart text-pink-500"></i> in Mumbai</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Notification Container -->
+    <div id="notification" class="fixed bottom-6 right-4 sm:right-6 glass rounded-lg p-4 sm:p-6 border border-cyan-500/30 text-white max-w-xs hidden z-50 animate-slide-in">
+        <div class="flex items-center gap-3">
+            <i class="fas fa-check-circle text-cyan-400 text-xl"></i>
+            <div>
+                <p class="font-semibold" id="notifMessage">Success!</p>
+                <p class="text-sm text-gray-400" id="notifDesc">Your message has been sent</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ===== MENU TOGGLE =====
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuLinks = document.querySelectorAll('#mobileMenu a');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuBtn.innerHTML = mobileMenu.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // ===== SCROLL TO SECTION =====
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        }
+
+        // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== NOTIFICATION FUNCTION =====
+        function showNotification(message, description = '', duration = 3000) {
+            const notification = document.getElementById('notification');
+            const notifMessage = document.getElementById('notifMessage');
+            const notifDesc = document.getElementById('notifDesc');
+
+            notifMessage.textContent = message;
+            notifDesc.textContent = description;
+            notification.classList.remove('hidden');
+
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, duration);
+        }
+
+        // ===== FORM SUBMISSION =====
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // Form validation
+            if (!name || !email || !subject || !message) {
+                showNotification('Error', 'Please fill all required fields');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Error', 'Please enter a valid email');
+                return;
+            }
+
+            // Log form data (In production, send to backend/email service)
+            console.log('[v0] Form submitted:', { name, email, phone, subject, message });
+
+            // Show success message
+            showNotification('Message Sent! ✨', 'I will contact you within 24 hours');
+
+            // Reset form
+            document.getElementById('contactForm').reset();
+
+            // Optional: Redirect or further actions
+            setTimeout(() => {
+                // You can add backend integration here
+            }, 1500);
+        });
+
+        // ===== SMOOTH SCROLL BEHAVIOR =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    scrollToSection(href.substring(1));
+                }
+            });
+        });
+
+        // ===== PROGRESS BAR ANIMATION =====
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            // Optional: Add progress indicator
+        });
+
+        // ===== LOAD ANIMATIONS =====
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('[v0] Portfolio loaded successfully');
+            
+            // Trigger animations on page load
+            document.querySelectorAll('.slide-in').forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // ===== ACCESSIBILITY: KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                mobileMenu.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in {
+            animation: slideIn 0.3s ease-out;
+        }
+    </style>
+</body>
+</html>
